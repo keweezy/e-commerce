@@ -194,7 +194,8 @@ footer p {
   display: flex !important;
 }
 .just {
-  justify-content: space-between;
+  justify-content: start;
+  column-gap: 3.4rem;
 }
 .row.just {
   margin-right: 0;
