@@ -34,7 +34,7 @@
     <h1
       style="margin-bottom:3%; text-align:center; text-transform:uppercase; text-decoration:underline"
     >
-      Items
+      Merchants
     </h1>
     <b-row class="row just" v-if="this.items.length >= 1">
       <b-card
@@ -60,6 +60,7 @@
         <template #footer>
           <em>{{ item.name }}</em>
           <p>{{ item.text }}</p>
+          <p style="font-size:11px">{{ item.category }}</p>
         </template>
       </b-card>
     </b-row>
@@ -215,6 +216,9 @@ footer p {
 }
 /* Media query for xs */
 @media (max-width: 575.98px) {
+  h1 {
+    font-size: 30px;
+  }
   .sale-img-pos {
     width: 8rem;
     position: relative;

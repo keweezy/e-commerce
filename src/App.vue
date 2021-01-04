@@ -34,27 +34,84 @@ export default {
     return {
       Logo: [Logo, Logo1, Logo2],
       items: [
-        { image: TestImg1, text: 'Fresh from the farm', name: 'Green Pea' },
-        { image: TestImg, text: 'Fresh', name: 'pepper' },
-        { image: TestImg2, text: 'Fresh Product', name: 'Strawberry' },
-        { image: TestImg3, text: 'New Supply', name: 'Carbbage' },
+        {
+          image: TestImg2,
+          text: 'Fresh Product',
+          name: 'Strawberry',
+          category: 'Product Merchant',
+        },
+        {
+          image: TestImg,
+          text: 'Fresh',
+          name: 'pepper',
+          category: 'Product Merchant',
+        },
+        {
+          image: TestImg,
+          text: 'Fresh',
+          name: 'Tomato',
+          category: 'Service Merchant',
+        },
+        {
+          image: TestImg2,
+          text: 'Fresh Product',
+          name: 'Strawberry',
+          category: 'Service Merchant',
+        },
         {
           image: TestImg4,
           text: 'Fresh from the farm. Limited supply available',
           name: 'Tomato',
+          category: 'Product Merchant',
         },
-        { image: 'TestImg7', text: 'This is New', name: 'Melon' },
-        { image: TestImg5, text: 'Fresh Yo', name: 'Greens' },
-        { image: TestImg6, text: 'Fresh from Ota farm', name: 'Carrot' },
-        { image: TestImg7, text: 'Fresh Supply', name: 'Juice' },
+        {
+          image: 'TestImg7',
+          text: 'This is New',
+          name: 'Melon',
+          category: 'Service Merchant',
+        },
+        {
+          image: TestImg5,
+          text: 'Fresh Yo',
+          name: 'Greens',
+          category: 'Service Merchant',
+        },
+        {
+          image: TestImg3,
+          text: 'New Supply',
+          name: 'Carbbage',
+          category: 'Product Merchant',
+        },
+        {
+          image: TestImg1,
+          text: 'Fresh from the farm',
+          name: 'Green Pea',
+          category: 'Product Merchant',
+        },
+        {
+          image: TestImg6,
+          text: 'Fresh from Ota farm',
+          name: 'Carrot',
+          category: 'Service Merchant',
+        },
+        {
+          image: TestImg7,
+          text: 'Fresh Supply',
+          name: 'Juice',
+          category: 'Service Merchant',
+        },
         {
           image: TestImg8,
           text: 'Fresh and healthy vegetables',
           name: 'Veggies',
+          category: 'Product Merchant',
         },
-        { image: TestImg, text: 'Fresh', name: 'Tomato' },
-        { image: TestImg2, text: 'Fresh Product', name: 'Strawberry' },
-        { image: TestImg3, text: 'New Supply', name: 'carbbage' },
+        {
+          image: TestImg3,
+          text: 'New Supply',
+          name: 'carbbage',
+          category: 'Service Merchant',
+        },
       ],
       colors: ['red', 'yellow', 'blue'],
       slide: 0,
@@ -72,22 +129,6 @@ export default {
     doSortBy(e) {
       this.sortBy = e.target.value;
     },
-    sort() {
-      let sortedArray = this.items;
-      sortedArray.sort((a, b) => {
-        let fa = a.name.toLowerCase(),
-          fb = b.name.toLowerCase();
-
-        if (fa < fb) {
-          return -1;
-        }
-        if (fa > fb) {
-          return 1;
-        }
-        return 0;
-      });
-      return sortedArray;
-    },
   },
   computed: {
     filteredItems() {
@@ -102,12 +143,24 @@ export default {
         });
       }
 
-      // Show sorted array in descending or ascending order
-      if (this.sortBy === 'ascending') {
-        allItems = this.sort();
+      // Show sorted array by merchants
+      if (this.sortBy === 'product') {
+        let newArray = [];
+        allItems.map((item) => {
+          if (item.category === 'Product Merchant') {
+            newArray = [...newArray, item];
+          }
+        });
+        allItems = newArray;
       }
-      if (this.sortBy === 'descending') {
-        allItems = this.sort().reverse();
+      if (this.sortBy === 'service') {
+        let newArray = [];
+        allItems.map((item) => {
+          if (item.category === 'Service Merchant') {
+            newArray = [...newArray, item];
+          }
+        });
+        allItems = newArray;
       }
 
       return allItems;
